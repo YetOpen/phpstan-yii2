@@ -39,6 +39,8 @@ final class ActiveRecordRelationReturnTypeExtension implements DynamicMethodRetu
 
         $argType = $scope->getType($methodCall->args[0]->value);
         if (!$argType->isClassStringType()->yes()) {
+            return null;
+
             throw new ShouldNotHappenException(sprintf('Invalid argument provided to method %s' . PHP_EOL . 'Hint: You should use ::class instead of ::className()', $methodReflection->getName()));
         }
 
